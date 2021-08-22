@@ -54,6 +54,9 @@ int wkDayCal::getResult() const
 {
 	int result = (yearCode + (yearCode / 4) + 1 + centuryCode + monthCode + day);
 	result = result % 7;
+
+	if (leapYear == true)
+		result = result - 1;
 	return result;
 }
 /******************************************************
@@ -85,20 +88,33 @@ void wkDayCal::displayResult()
 * Link: https://www.includehelp.com/cpp-programs/find-total-number-of-days-in-given-month-of-year.aspx
 *Purpose: Returns the total number of days in a given month
 */
-int wkDayCal::getNumOfMaxDaysForAMonth() const
+int wkDayCal::getNumOfMaxDaysForAMonth() 
 {
+	
 	//leap year condition, if month is 2
 	if (month == 2)
 	{
 		if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))
+		{
+			leapYear = true;
 			return 29;
+		}
 		else
+		{
+			leapYear = false;
 			return 28;
+		}
 	}
 	//months which has 31 days
 	else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8
 		|| month == 10 || month == 12)
+	{
+		leapYear = false;
 		return 31;
+	}
 	else
+	{
+		leapYear = false;
 		return 30;
+	}
 }

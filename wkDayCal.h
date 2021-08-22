@@ -23,6 +23,7 @@ struct wkDayCal
 	int monthCode;
 	int yearCode;
 	int centuryCode;
+	bool leapYear;
 
 /******************************************************
   3) User Input Validation Methods
@@ -39,12 +40,12 @@ struct wkDayCal
 	void setMonthCode();
 	void setCenturyCode();
 	void setYearCode() { yearCode = year % 100; }
-
+	
 /******************************************************
 	5) Getter Methods
 ******************************************************/
   // These methods grab the result of a calculation. 
-	int getNumOfMaxDaysForAMonth() const;
+	int getNumOfMaxDaysForAMonth();
 	int getResult() const;
 
 /******************************************************
